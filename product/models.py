@@ -3,7 +3,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Category(MPTTModel):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
     # we use django mptt to make relationship between the table and itself
     parent = TreeForeignKey("self", on_delete=models.PROTECT, null=True, blank=True)
 
@@ -15,7 +15,7 @@ class Category(MPTTModel):
 
 
 class Brand(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, unique=True)
 
     def __str__(self):
         return self.name
